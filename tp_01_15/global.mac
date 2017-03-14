@@ -1,0 +1,122 @@
+
+%ifndef GLOBAL_INC
+%define GLOBAL_INC
+
+;********************************************************************************
+;* Macros
+;********************************************************************************
+
+
+    %define VIDEO_BASE	0x200000
+    %define BREAKPOINT	xchg bx, bx
+
+    %define STACK_SIZE 0x180
+
+    %define TASK_READY        0
+    %define TASK_RUNNING      1
+    %define TASK_DORMANT      2
+
+    %define CR0_PE 1<<0		;PROTECTION ENABLE BIT
+    %define CR0_PG 1<<31	;PAE ENABLE BIT
+    
+    ;------para verificacion de pae------;
+    %define CPUID_EAX_1 1		;CPUID feature bits
+    %define CPUID_PAE_A 1<<6		;bit de pae feauture
+    ;------para Seteo de pae------;
+    %define CR4_PAE 1<<5
+    ;------para verificacion de LME------;
+    %define CPUID_EAX_81 0x80000001	;CPUID feature bits
+    %define CPUID_LME_BIT 1<<29		;Bit de verificacion de LME
+    ;------para Seteo de LME------;
+    %define MSR_EFER 0x0C0000080	;Valor a pasar a ecx para pedir lectura de EFER al msr
+    %define EFER_LME_BIT 0x100		;Bit de Efer de LME
+
+    ;------para verificacion de MMX------;
+    %define CPUID_MMX_BIT 0x00800000		;Bit de verificacion de MMX
+    ;------para verificacion de FXRS------;
+    %define CPUID_FXRS_BIT 1<<24		;Bit de verificacion de FXRS
+   ;------para verificacion de Debug Extensions------;
+    %define CPUID_DE_BIT 1<<2		;Bit de verificacion de Debug Extensions
+
+    
+    
+    ;***************************DECLARACION DE ESTRUCTURA PARA TAREA Y TSS*******************/
+
+    struc tss_struc                ;TSS (Definicion de tipo)
+		resd 1
+    .reg_RSP0l   resd 1
+    .reg_RSP0u   resd 1
+    .reg_RSP1l   resd 1
+    .reg_RSP1u   resd 1
+    .reg_RSP2l   resd 1
+    .reg_RSP2u   resd 1
+		resd 1
+		resd 1
+    .reg_IST1l   resd 1
+    .reg_IST1u   resd 1
+    .reg_IST2l   resd 1
+    .reg_IST2u   resd 1
+    .reg_IST3l   resd 1
+    .reg_IST3u   resd 1
+    .reg_IST4l   resd 1
+    .reg_IST4u   resd 1
+    .reg_IST5l   resd 1
+    .reg_IST5u   resd 1
+    .reg_IST6l   resd 1
+    .reg_IST6u   resd 1
+    .reg_IST7l   resd 1
+    .reg_IST7u   resd 1
+		 resd 1
+		 resd 1
+    .reg_IOMAP   resw 1
+    .IOMAP       resd 1
+    endstruc
+
+    struc task_struct       ;Estructura de tarea del scheduller (Definicion de tipo)
+    .rax        resq 1
+    .rbx        resq 1
+    .rcx        resq 1
+    .rdx        resq 1
+    .RSP0       resq 1
+    .RIP        resq 1
+    .RDI        resq 1
+    .RSP        resq 1
+    .CR3        resq 1
+    .RFLAGS     resq 1
+    .MMX	resq 1	;aca tengo guardada la direccion donde esta guardada la estructura de resguardo de mmx
+    .SS0        resw 1
+    .CS         resw 1
+    .DS         resw 1
+    .SS         resw 1
+
+    .RBP	resq 1
+    .RSI	resq 1		;by 
+    .R9		resq 1
+    .R10	resq 1
+    .R11	resq 1
+    .R12	resq 1	
+    .R13	resq 1
+    .R14	resq 1
+    .R15	resq 1
+    .ES		resw 1
+    .FS		resw 1
+    .GS		resw 1
+    
+
+    
+    endstruc
+
+    struc dispatcher_task_struct      		;Estructura de tarea del dispatcher (Definicion de tipo)
+    .currentTicks   		resw 1		;ticks actuales
+    .prioridad_maxTicks     	resw 1		;ticks para el cambio de contexto
+    .prioridad_orgTicks     	resw 1		;ticks para el cambio de contexto valor por defecto
+    .totalTicks     		resq 1		;ticks totales de la aplicacion
+    .sleepMS			resq 1		;millisegundos dormida la tarea
+    .id_task			resw 1		;id de la tarea
+    .state			resw 1		;estado de la tarea
+    .current_task_struct	resq 1
+    .next			resq 1
+    endstruc
+
+
+%endif

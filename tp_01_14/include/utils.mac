@@ -1,0 +1,26 @@
+
+%ifndef UTILS_INC
+%define UTILS_INC
+    ;********************************************************************************
+    ;* Macros Video																		*
+    ;********************************************************************************
+    %define	VIDEO_BLINK 		10000000b	;BLINK
+    %define	VIDEO_B_C_B 		00010000b	;BACKGROUND COLOR BLUE
+    %define	VIDEO_B_C_G 		00100000b	;BACKGROUND COLOR GREEN
+    %define	VIDEO_B_C_R 		01000000b	;BACKGROUND COLOR RED
+    %define	VIDEO_F_C_R 		00001000b   	;FOREGROUND COLOR RED
+    %define	VIDEO_F_C_G 		00000100b	;FOREGROUND COLOR GREEN
+    %define VIDEO_F_C_B 		00000010b	;FOREGROUND COLOR BLUE
+    %define VIDEO_UNDERLINE 	00000001b	;UNDERLINE
+
+
+    %define VID_MEM 0xb8000     ;ahora el video esta direccionado a la pagina (0x000b8000)
+
+
+    %define VID_MEM_SEG 0xB000 ;definicion de memoria de video en binario dezplazado (MODO REAL)
+    %define VID_MEM_OFF 0x8000
+
+
+    %define VID_MEM_64 0x0     ;ahora el video esta direccionado a la pagina (0x000b8000)
+	
+%endif

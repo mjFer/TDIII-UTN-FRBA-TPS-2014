@@ -1,0 +1,40 @@
+%ifndef PAGING_INIT_INC
+%define PAGING_INIT_INC
+
+    %define DUP   	0xFFFF;
+    %define _PML4_BASE   	0x0010;
+    %define	_PDPT_BASE  	_PML4_BASE + 0x1000	;ubicacion de la Page Directory Pointer Table
+    %define	_PDT_BASE   	_PDPT_BASE + 0x1000	;ubicacion de la Page Directory Table
+    %define	_PT_BASE	_PDT_BASE + 0x1000	;ubicacion de la Page Table
+
+    %define PML4_BASE   	0x100000 ; en el primer mega de memoria			0xA000 ubicacion de la Page Map Level 4
+    %define	PDPT_BASE  	PML4_BASE + 0x1000	;ubicacion de la Page Directory Pointer Table
+    %define	PDT_BASE   	PDPT_BASE + 0x1000	;ubicacion de la Page Directory Table
+    %define	PT_BASE		PDT_BASE + 0x1000	;ubicacion de la Page Table
+						    ;puedo crear hasta la direccion 0x304000
+	  
+    %define PML4_BASE_TA   	0x305000 
+    %define	PDPT_BASE_TA  	PML4_BASE_TA + 0x1000	;ubicacion de la Page Directory Pointer Table
+    %define	PDT_BASE_TA   	PDPT_BASE_TA + 0x1000	;ubicacion de la Page Directory Table
+    %define	PT_BASE_TA	PDT_BASE_TA + 0x1000	;ubicacion de la Page Table
+
+    %define PML4_BASE_TB   	0x309000 
+    %define	PDPT_BASE_TB  	PML4_BASE_TA + 0x1000	
+    %define	PDT_BASE_TB   	PDPT_BASE_TA + 0x1000	
+    %define	PT_BASE_TB	PDT_BASE_TA + 0x1000	
+
+    %define PML4_BASE_TC   	0x30D000 ; en el primer mega de memoria			0xA000 ubicacion de la Page Map Level 4
+    %define	PDPT_BASE_TC  	PML4_BASE_TA + 0x1000	;ubicacion de la Page Directory Pointer Table
+    %define	PDT_BASE_TC   	PDPT_BASE_TA + 0x1000	;ubicacion de la Page Directory Table
+    %define	PT_BASE_TC	PDT_BASE_TA + 0x1000	;ubicacion de la Page Table
+
+    %define PML4_BASE_TD   	0x311000 ; en el primer mega de memoria			0xA000 ubicacion de la Page Map Level 4
+    %define	PDPT_BASE_TD  	PML4_BASE_TA + 0x1000	;ubicacion de la Page Directory Pointer Table
+    %define	PDT_BASE_TD   	PDPT_BASE_TA + 0x1000	;ubicacion de la Page Directory Table
+    %define	PT_BASE_TD	PDT_BASE_TA + 0x1000	;ubicacion de la Page Table
+
+    %define	USER_PAGE	0xA000	;ubicacion zona usuario
+
+    %define BASE_PAGES PT_BASE + 0x200000		;obseteo las paginas por encima de 512 pt para poder administrar 512 megas de ram 
+
+%endif

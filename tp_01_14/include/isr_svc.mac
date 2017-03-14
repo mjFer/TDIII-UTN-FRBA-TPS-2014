@@ -1,0 +1,21 @@
+
+
+%ifndef ISR_SVC_INC
+%define ISR_SVC_INC
+
+  %define S_RANDOM 0
+  %define S_PRINT  1
+  %define S_ITOA 2
+  %define S_JIFFIES 3
+  %define S_BCDTOA 5
+  %define S_T_ID 6
+  %define S_T_PR 7
+  %define S_RTC_SEC 10
+  %define S_RTC_MIN 11
+  %define S_RTC_HR 12
+  %define S_RTC_DAY 13
+  %define S_RTC_MNTH 14
+  %define S_RTC_YR 15
+  %define S_MSLEEP 16
+
+%endif

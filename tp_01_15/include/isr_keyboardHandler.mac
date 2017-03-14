@@ -1,0 +1,29 @@
+
+%ifndef ISR_KEYBOARDHANDLER_INC
+%define ISR_KEYBOARDHANDLER_INC
+
+    ;defines de teclado
+    %define KEY_ESC 01h
+
+    %define KEY_F5 0xbf  	;3
+    %define KEY_F6 0xc0		;b
+    %define KEY_F7 0xc1		;83
+    %define KEY_F8 0xc2		;0a
+
+    %define KEY_CTL_PRESS 0x1D
+    %define KEY_CTL_RELEASE 0x9D
+
+    %define KEY_1_PRESS 0x02
+    %define KEY_2_PRESS 0x03
+    %define KEY_3_PRESS 0x04
+
+    %define KEY_Q_PRESS 0x10
+    %define KEY_W_PRESS 0x11
+
+    %define KEY_7_MAKE_CODE 0x08
+    %define KEY_8_MAKE_CODE 0x09
+    %define KEY_9_MAKE_CODE 0x0A
+    %define KEY_0_MAKE_CODE 0x0B
+
+
+%endif

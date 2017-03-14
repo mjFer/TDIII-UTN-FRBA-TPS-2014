@@ -1,0 +1,8 @@
+%ifndef PAGE_FAULT_EX_INC
+%define PAGE_FAULT_EX_INC
+
+  %define FISICAL_AVAIABLE_MEMORY 0x8000000  ;equivale a 128megas de ram
+  ;%define FISICAL_AVAIABLE_MEMORY 0x4000000  ;equivale a 128megas de ram
+
+    
+%endif
